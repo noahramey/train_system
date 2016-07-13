@@ -45,4 +45,15 @@ describe(Train) do
       expect(test_train.line()).to(eq(2))
     end
   end
+
+  describe('#delete') do
+    it('deletes a train from the database') do
+      train1 = Train.new({line: 1, seats: 250})
+      train1.save()
+      train2 = Train.new({line: 3, seats: 300})
+      train2.save()
+      train2.delete()
+      expect(Train.all()).to(eq([train1]))
+    end
+  end
 end

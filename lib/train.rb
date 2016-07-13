@@ -36,4 +36,8 @@ class Train
     DB.exec("UPDATE trains SET line = #{@line} WHERE id = #{@id};")
     DB.exec("UPDATE trains SET seats = #{@seats} WHERE id = #{@id};")
   end
+
+  define_method(:delete) do
+    DB.exec("DELETE FROM trains WHERE id = #{self.id()};")
+  end
 end
