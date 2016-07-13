@@ -56,4 +56,14 @@ describe(Train) do
       expect(Train.all()).to(eq([train1]))
     end
   end
+
+  describe('.find') do
+    it('finds a train from list of trains') do
+      train1 = Train.new({line: 1, seats: 250})
+      train1.save()
+      train2 = Train.new({line: 3, seats: 300})
+      train2.save()
+      expect(Train.find(train1.id())).to(eq(train1))
+    end
+  end
 end

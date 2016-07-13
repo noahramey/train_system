@@ -4,14 +4,25 @@
       <br><br>
       <h1 class="header center teal-text text-lighten-2">Transit System </h1>
       <div class="row center">
-        <h5 class="header col s12 light">An app to help you plan your next train adventure.  View current routes, cities, and train lines in your area!</h5>
+        <h5 class="header col s12 teal-text">An app to help you plan your next train adventure.  View current routes, cities, and train lines in your area!</h5>
       </div>
       <div class="row center">
-        <a href="/trains" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">View Trains</a>
+        <a href="/trains/new" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Add Train</a>
       </div>
       <br><br>
 
     </div>
   </div>
-  <div class="parallax"><img src="./public/background1.jpg" alt="Unsplashed background img 1"></div>
+  <div class="parallax"><img src="<%= url('img/background1.jpg') %>" alt="Unsplashed background img 1"></div>
+</div>
+
+<div class="container">
+  <div class="row center">
+    <ul class="collection with-header">
+      <li class="collection-header">Trains</li>
+      <% @trains.each() do |train| %>
+        <li class="collection-item"><a href="/trains/<%= train.id() %>"><%= train.line() %></a></li>
+      <% end %>
+    </ul>
+  </div>
 </div>

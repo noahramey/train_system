@@ -1,0 +1,19 @@
+<h1 class="">Edit Train: <%= @train.line() %></h1>
+<div class="row container">
+  <form class="col s12" action="/trains/<%= @train.id() %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <div class="row">
+      <div class="input-field col s6">
+        <input type="text" placeholder="Edit Train Line" name="line" id="line" class="validate">
+        <label for="line"></label>
+      </div>
+      <div class="input-field col s6">
+        <label for="seats"></label>
+        <input type="text" placeholder="Edit Number of Seats" name="seats" id="seats" class="validate">
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light" type="submit">Update
+      <i class="material-icons right">send</i>
+    </button>
+  </form>
+</div>
