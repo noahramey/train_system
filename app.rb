@@ -4,6 +4,7 @@ also_reload("lib/**/*.rb")
 require('./lib/train')
 require('./lib/city')
 require('pg')
+require('pry')
 
 DB = PG.connect({:dbname => "transit_system_test"})
 
@@ -65,8 +66,8 @@ get('/cities/new') do
 end
 
 post('/cities') do
-  name = params.fetch('name')
-  state = params.fetch('state')
+  name = params.fetch("name")
+  state = params.fetch("state")
   city = City.new({name: name, state: state})
   city.save()
   @cities = City.all()
@@ -84,8 +85,8 @@ get("/cities/:id/edit") do
 end
 
 patch("/cities/:id") do
-  name = params.fetch('name')
-  state = params.fetch('state')
+  name = params.fetch("name")
+  state = params.fetch("state")
   @city = City.find(params.fetch("id").to_i())
   @city.update({name: name, state: state})
   erb(:city)

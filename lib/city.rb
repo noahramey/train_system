@@ -17,6 +17,9 @@ class City
     cities = []
     returned_cities.each() do |city|
       name = city.fetch('name')
+      if name.include? "ß"
+        name = name.gsub(/ß/, "'")
+      end
       state = city.fetch('state')
       id = city.fetch('id').to_i()
       cities.push(City.new({name: name, state: state, id: id}))
@@ -25,12 +28,18 @@ class City
   end
 
   define_method(:save) do
+    if @name.include? "'"
+      @name = @name.gsub(/'/, "ß")
+    end
     result = DB.exec("INSERT INTO cities (name, state) VALUES ('#{@name}', '#{@state}') RETURNING id;")
     @id = result.first().fetch('id').to_i()
   end
 
   define_method(:update) do |attributes|
     @name = attributes.fetch(:name)
+    if @name.include? "'"
+      @name = @name.gsub(/'/, "ß")
+    end
     @state = attributes.fetch(:state)
     @id = self.id()
     DB.exec("UPDATE cities SET name = '#{@name}' WHERE id = #{@id};")
