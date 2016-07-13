@@ -42,6 +42,14 @@ describe('the specific train path', {:type => :feature}) do
     fill_in('line', :with => 2)
     fill_in('seats', :with => 400)
     click_on("Update")
-    expect(page).to have_content('Update successful!')
+    expect(page).to have_content('Line: 2')
+  end
+
+  it('allows the user to delete a particular train') do
+    train1 = Train.new({line: 6, seats: 30})
+    train1.save()
+    visit("/trains/#{train1.id()}")
+    click_on("Delete")
+    expect(page).to have_content("Trains")
   end
 end

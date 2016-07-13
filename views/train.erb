@@ -1,4 +1,9 @@
+<h1>Line: <%= @train.line() %></h1>
 <h1>Seats: <%= @train.seats() %></h1>
 
 <a href="/trains/<%= @train.id() %>/edit">Edit</a>
-<a href="#">Delete</a>
+
+<form class="col s12" action="/trains/<%= @train.id() %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button class="btn waves-effect waves-light" type="submit">Delete</button>
+</form>

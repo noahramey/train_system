@@ -1,0 +1,19 @@
+<h1 class="">Edit City: <%= @city.name() %></h1>
+<div class="row container">
+  <form class="col s6" action="/cities/<%= @city.id() %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <div class="row">
+      <div class="input-field col s6">
+        <input type="text" placeholder="Edit City" name="name" id="name" class="validate">
+        <label for="name"></label>
+      </div>
+      <div class="input-field col s6">
+        <label for="state"></label>
+        <input type="text" placeholder="Edit State" name="state" id="state" class="validate">
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light" type="submit">Update
+      <i class="material-icons right">send</i>
+    </button>
+  </form>
+</div>

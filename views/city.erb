@@ -1,0 +1,9 @@
+<h1>City: <%= @city.name() %></h1>
+<h1>State: <%= @city.state() %></h1>
+
+<a href="/cities/<%= @city.id() %>/edit">Edit</a>
+
+<form class="col s12" action="/cities/<%= @city.id() %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button class="btn waves-effect waves-light" type="submit">Delete</button>
+</form>

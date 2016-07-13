@@ -1,0 +1,28 @@
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br><br>
+      <h1 class="header center teal-text text-lighten-2">Transit System </h1>
+      <div class="row center">
+        <h5 class="header col s12 teal-text">An app to help you plan your next train adventure.  View current routes, cities, and train lines in your area!</h5>
+      </div>
+      <div class="row center">
+        <a href="/cities/new" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Add City</a>
+      </div>
+      <br><br>
+
+    </div>
+  </div>
+  <div class="parallax"><img src="<%= url('img/background1.jpg') %>" alt="Unsplashed background img 1"></div>
+</div>
+
+<div class="container">
+  <div class="row center">
+    <ul class="collection with-header">
+      <li class="collection-header">Cities</li>
+      <% @cities.each() do |city| %>
+        <li class="collection-item"><a href="/cities/<%= city.id() %>"><%= city.name() %></a></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -2,9 +2,9 @@
   <div class="section no-pad-bot">
     <div class="container">
       <br><br>
-      <h1 class="header center teal-text text-lighten-2">Add A Train </h1>
+      <h1 class="header center teal-text text-lighten-2">Add A City</h1>
       <div class="row center">
-        <a href="/trains" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">View Trains</a>
+        <a href="/cities" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">View Cities</a>
       </div>
       <br><br>
 
@@ -14,15 +14,15 @@
 </div>
 
 <div class="row container">
-  <form class="col s12" action="/trains" method="post">
+  <form class="col s12" action="/cities" method="post">
     <div class="row">
       <div class="input-field col s6">
-        <input type="text" placeholder="Train Line" name="line" id="line" class="validate">
-        <label for="line"></label>
+        <input type="text" placeholder="City Name" name="name" id="name" class="validate">
+        <label for="name"></label>
       </div>
       <div class="input-field col s6">
-        <label for="seats"></label>
-        <input type="text" placeholder="Seats" name="seats" id="seats" class="validate">
+        <label for="state"></label>
+        <input type="text" placeholder="State" name="state" id="state" class="validate">
       </div>
     </div>
     <button class="btn waves-effect waves-light" type="submit">Submit

@@ -1,6 +1,6 @@
 <h1 class="">Edit Train: <%= @train.line() %></h1>
 <div class="row container">
-  <form class="col s12" action="/trains/<%= @train.id() %>" method="post">
+  <form class="col s6" action="/trains/<%= @train.id() %>" method="post">
     <input type="hidden" name="_method" value="patch">
     <div class="row">
       <div class="input-field col s6">
