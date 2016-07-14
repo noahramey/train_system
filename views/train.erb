@@ -1,6 +1,19 @@
 <h1>Line: <%= @train.line() %></h1>
 <h1>Seats: <%= @train.seats() %></h1>
 
+<% if @train.cities().any?() %>
+  <h3>Here are all the cities this train goes through:</h3>
+
+  <ul>
+    <% @train.cities().each() do |city| %>
+      <li><%= city.name() %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no planned cities for this line yet.  We're working on it!</p>
+<% end %>
+
+
 <a href="/trains/<%= @train.id() %>/edit">Edit</a>
 
 <form class="col s12" action="/trains/<%= @train.id() %>" method="post">

@@ -1,19 +1,34 @@
-<h1 class="">Edit City: <%= @city.name() %></h1>
-<div class="row container">
-  <form class="col s6" action="/cities/<%= @city.id() %>" method="post">
-    <input type="hidden" name="_method" value="patch">
-    <div class="row">
-      <div class="input-field col s6">
-        <input type="text" placeholder="Edit City" name="name" id="name" class="validate">
-        <label for="name"></label>
+<div class="container">
+  <h1 class="">Edit City: <%= @city.name() %></h1>
+  <div class="row container">
+    <form class="col s6" action="/cities/<%= @city.id() %>" method="post">
+      <input type="hidden" name="_method" value="patch">
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" placeholder="Edit City" name="name" id="name" class="validate">
+          <label for="name"></label>
+        </div>
+        <div class="input-field col s6">
+          <label for="state"></label>
+          <input type="text" placeholder="Edit State" name="state" id="state" class="validate">
+        </div>
       </div>
-      <div class="input-field col s6">
-        <label for="state"></label>
-        <input type="text" placeholder="Edit State" name="state" id="state" class="validate">
-      </div>
-    </div>
-    <button class="btn waves-effect waves-light" type="submit">Update
-      <i class="material-icons right">send</i>
-    </button>
-  </form>
+      <% if @trains.any?() %>
+        <h5>Add Train Line to City</h3>
+        <% @trains.each() do |train| %>
+          <% if @city.trains().include?(train) == false %>
+            <div class="row center">
+              <p>
+                <input type="checkbox" name="train_ids[]" id="<%= train.id() %>" value="<%= train.id() %>">
+                <label for="<%= train.id() %>"><%= train.line() %></label>
+              </p>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+      <button class="btn waves-effect waves-light" type="submit">Update
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+  </div>
 </div>

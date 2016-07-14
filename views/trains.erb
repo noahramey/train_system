@@ -7,7 +7,11 @@
         <h5 class="header col s12">An app to help you plan your next train adventure.  View current routes, cities, and train lines in your area!</h5>
       </div>
       <div class="row center">
-        <a href="/trains/new" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Add Train</a>
+        <a href="/trains" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">View Trains</a>
+        <a href="/cities" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">View Cities</a>
+      </div>
+      <div class="row center">
+        <a href="/trains/new" id="download-button" class="btn-large waves-effect waves-light white lighten-1 teal-text">Add Trains</a>
       </div>
       <br><br>
 
@@ -18,11 +22,15 @@
 
 <div class="container">
   <div class="row center">
-    <ul class="collection with-header">
-      <li class="collection-header">Trains</li>
-      <% @trains.each() do |train| %>
-        <li class="collection-item"><a href="/trains/<%= train.id() %>"><%= train.line() %></a></li>
-      <% end %>
-    </ul>
+    <% if @trains.any?() %>
+      <ul class="collection with-header">
+        <li class="collection-header">Trains</li>
+        <% @trains.each() do |train| %>
+          <li class="collection-item"><a href="/trains/<%= train.id() %>"><%= train.line() %></a></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <h2>There are no trains!</h2>
+    <% end %>
   </div>
 </div>

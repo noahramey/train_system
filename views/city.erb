@@ -1,6 +1,18 @@
 <h1>City: <%= @city.name() %></h1>
 <h1>State: <%= @city.state() %></h1>
 
+<% if @city.trains().any?() %>
+  <h3>Here are all the lines going through this city:</h3>
+
+  <ul>
+    <% @city.trains().each() do |train| %>
+      <li><%= train.line() %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no lines going through the city yet.  We're working on it!</p>
+<% end %>
+
 <a href="/cities/<%= @city.id() %>/edit">Edit</a>
 
 <form class="col s12" action="/cities/<%= @city.id() %>" method="post">

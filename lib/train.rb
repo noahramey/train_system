@@ -31,12 +31,13 @@ class Train
 
   define_method(:update) do |attributes|
     @line = attributes.fetch(:line, @line)
-    @seats = attributes.fetch(:seats, @line)
+    @seats = attributes.fetch(:seats, @seats)
     @id = self.id()
     DB.exec("UPDATE trains SET line = #{@line} WHERE id = #{@id};")
     DB.exec("UPDATE trains SET seats = #{@seats} WHERE id = #{@id};")
 
     attributes.fetch(:city_ids, []).each() do |city_id|
+      DB.exec("SELECT city_id FROM cities_trains;")
       DB.exec("INSERT INTO cities_trains (city_id, train_id) VALUES (#{city_id}, #{@id});")
     end
   end
@@ -63,6 +64,9 @@ class Train
       city_id = result.fetch("city_id").to_i()
       city = DB.exec("SELECT * FROM cities WHERE id = #{city_id};")
       name = city.first().fetch("name")
+      if name.include? "ß"
+        name = name.gsub(/ß/, "'")
+      end
       state = city.first().fetch("state")
       train_cities.push(City.new({name: name, state: state, id: city_id}))
     end
