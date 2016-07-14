@@ -44,6 +44,17 @@ describe(Train) do
       test_train.update({line: 2, seats: 250})
       expect(test_train.line()).to(eq(2))
     end
+
+    it('should add a city to a particular train') do
+      test_train = Train.new({line: 1, seats: 250})
+      test_train.save()
+      test_city = City.new({name: "Jacksonville", state: "FL"})
+      test_city.save()
+      test_city2 = City.new({name: "Monkey's Eyebrow", state: "KY"})
+      test_city2.save()
+      test_train.update({city_ids: [test_city.id(), test_city2.id()]})
+      expect(test_train.cities()).to(eq([test_city, test_city2]))
+    end
   end
 
   describe('#delete') do
@@ -64,6 +75,19 @@ describe(Train) do
       train2 = Train.new({line: 3, seats: 300})
       train2.save()
       expect(Train.find(train1.id())).to(eq(train1))
+    end
+  end
+
+  describe('#cities') do
+    it('should return all of the cities for a particular train') do
+      test_train = Train.new({line: 1, seats: 250})
+      test_train.save()
+      test_city = City.new({name: "Jacksonville", state: "FL"})
+      test_city.save()
+      test_city2 = City.new({name: "Monkey's Eyebrow", state: "KY"})
+      test_city2.save()
+      test_train.update({city_ids: [test_city.id(), test_city2.id()]})
+      expect(test_train.cities()).to(eq([test_city, test_city2]))
     end
   end
 end

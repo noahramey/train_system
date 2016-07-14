@@ -64,6 +64,40 @@ ALTER SEQUENCE cities_id_seq OWNED BY cities.id;
 
 
 --
+-- Name: cities_trains; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
+--
+
+CREATE TABLE cities_trains (
+    id integer NOT NULL,
+    city_id integer,
+    train_id integer
+);
+
+
+ALTER TABLE cities_trains OWNER TO "Guest";
+
+--
+-- Name: cities_trains_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
+--
+
+CREATE SEQUENCE cities_trains_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE cities_trains_id_seq OWNER TO "Guest";
+
+--
+-- Name: cities_trains_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
+--
+
+ALTER SEQUENCE cities_trains_id_seq OWNED BY cities_trains.id;
+
+
+--
 -- Name: trains; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
 --
 
@@ -108,6 +142,13 @@ ALTER TABLE ONLY cities ALTER COLUMN id SET DEFAULT nextval('cities_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
 --
 
+ALTER TABLE ONLY cities_trains ALTER COLUMN id SET DEFAULT nextval('cities_trains_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
+--
+
 ALTER TABLE ONLY trains ALTER COLUMN id SET DEFAULT nextval('trains_id_seq'::regclass);
 
 
@@ -124,6 +165,21 @@ COPY cities (id, name, state) FROM stdin;
 --
 
 SELECT pg_catalog.setval('cities_id_seq', 1, false);
+
+
+--
+-- Data for Name: cities_trains; Type: TABLE DATA; Schema: public; Owner: Guest
+--
+
+COPY cities_trains (id, city_id, train_id) FROM stdin;
+\.
+
+
+--
+-- Name: cities_trains_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
+--
+
+SELECT pg_catalog.setval('cities_trains_id_seq', 1, false);
 
 
 --
@@ -147,6 +203,14 @@ SELECT pg_catalog.setval('trains_id_seq', 1, false);
 
 ALTER TABLE ONLY cities
     ADD CONSTRAINT cities_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: cities_trains_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
+--
+
+ALTER TABLE ONLY cities_trains
+    ADD CONSTRAINT cities_trains_pkey PRIMARY KEY (id);
 
 
 --
